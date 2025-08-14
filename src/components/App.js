@@ -34,7 +34,7 @@ export default function MyCalendar() {
         right: [
           {
             text: "Save",
-            className: "btn",
+            className: "success",
             action: () => {
               const title = document.getElementById("newEventTitle").value;
               const location = document.getElementById("newEventLocation").value;
@@ -73,7 +73,7 @@ export default function MyCalendar() {
         left: [
           {
             text: "Delete",
-             className:'btn',
+             className:'danger',
             action: () => {
               dispatch(DeleteEvent({ type: "delete", event }));
               Popup.close();
@@ -137,7 +137,7 @@ export default function MyCalendar() {
       />
 
        
-          <Popup/>
+          <Popup class='btn'/>
           
       
     </div>
