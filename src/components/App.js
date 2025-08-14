@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import BigCalendar from "react-big-calendar";
-import moment, { parseTwoDigitYear } from "moment";
+import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import './Calendar.css'
+import './Calendar.css';
 import CustomToolbar from "./CustomToolbar";
 import Popup from "react-popup";
 import { useDispatch, useSelector } from "react-redux";
-import { CreateEvent, UpdateEvent ,DeleteEvent} from "./EventSlice";
+import { CreateEvent, UpdateEvent, DeleteEvent } from "./EventSlice";
 
 // Localizer setup for old version
 const localizer = BigCalendar.momentLocalizer(moment);
 
- 
-
 export default function MyCalendar() {
- 
- 
   const events = useSelector((state) => state.Event.events);
-  const dispatch   =useDispatch();
-  console.log("what is come in events",events);
-  const openCreatePopup = (date) => {
+  const dispatch = useDispatch();
 
+  const openCreatePopup = (date) => {
     Popup.create({
       title: "Create Event",
       content: (
@@ -38,7 +33,7 @@ export default function MyCalendar() {
             action: () => {
               const title = document.getElementById("newEventTitle").value;
               const location = document.getElementById("newEventLocation").value;
-  
+
               if (title) {
                 const newEvent = {
                   id: new Date().getTime(), // add unique id
@@ -50,7 +45,7 @@ export default function MyCalendar() {
                 };
                 dispatch(CreateEvent(newEvent));
               }
-  
+
               Popup.close();
             },
           },
@@ -58,9 +53,7 @@ export default function MyCalendar() {
       },
     });
   };
-  
 
-  // Open popup to edit or delete an event
   const openEditPopup = (event) => {
     Popup.create({
       title: "Edit / Delete Event",
@@ -73,7 +66,7 @@ export default function MyCalendar() {
         left: [
           {
             text: "Delete",
-             className:'danger',
+            className: 'danger',
             action: () => {
               dispatch(DeleteEvent({ type: "delete", event }));
               Popup.close();
@@ -86,7 +79,6 @@ export default function MyCalendar() {
             className: "success",
             action: () => {
               const newTitle = document.getElementById("editEventTitle").value;
-              console.log("what is come in newTitle",newTitle)
               dispatch(UpdateEvent({ type: "update", event: { ...event, title: newTitle } }));
               Popup.close();
             },
@@ -95,30 +87,25 @@ export default function MyCalendar() {
       },
     });
   };
-  
 
   const eventStyleGetter = (event) => {
     const newDate = moment(event.start).startOf("day");
     const today = moment().startOf("day");
     const isPast = newDate.isBefore(today);
-  
+
     const style = {
       backgroundColor: isPast ? "pink" : "green",
       color: "white",
-      borderRadius: "6px",       // ✅ fixed typo
+      borderRadius: "6px",
       padding: "2px 5px",
       height: "30px",
-      textAlign: "center",       // ✅ fixed typo
+      textAlign: "center",
     };
     return { style };
   };
-  
-
 
   return (
     <div style={styles.container}>
-  
-
       <BigCalendar
         localizer={localizer}
         events={events}
@@ -128,18 +115,13 @@ export default function MyCalendar() {
         views={["month"]}
         selectable
         style={styles.calendar}
-        components={{
-          toolbar:CustomToolbar
-        }}
-        onSelectSlot={(slotInfo)=>openCreatePopup(slotInfo.start)}
-        onSelectEvent={(event)=>openEditPopup(event)}
-        eventPropGetter ={eventStyleGetter}
+        components={{ toolbar: CustomToolbar }}
+        onSelectSlot={(slotInfo) => openCreatePopup(slotInfo.start)}
+        onSelectEvent={(event) => openEditPopup(event)}
+        eventPropGetter={eventStyleGetter}
       />
 
-       
-          <Popup class='btn'/>
-          
-      
+      <Popup class='btn' />
     </div>
   );
 }
@@ -162,9 +144,8 @@ const styles = {
     height: "600px",
     marginTop: "10px",
   },
-  danger:{
-    background:' #dc3545',
+  danger: {
+    background: '#dc3545',
     color: 'white',
   }
-
 };
