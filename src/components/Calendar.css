@@ -1,0 +1,112 @@
+ /* Highlight today */
+.rbc-today {
+    background-color: #fff3cd !important;
+  }
+  
+  /* Event style */
+  /* .rbc-event {
+    background-color: rgb(222,105,135) !important;
+    color: white !important;
+    border-radius: 6px;
+    padding: 2px 5px;
+    height: 30px;
+    text-align: center;
+  } */
+  
+  /* Selected time slots */
+  .rbc-selected-cell {
+    background-color: #cce5ff !important;
+  }
+  
+  /* Toolbar buttons */
+  .rbc-toolbar button {
+    color: #007bff !important;
+    border-radius: 5px;
+  }
+  
+  .rbc-toolbar button.rbc-active {
+    background-color: #007bff !important;
+    color: white !important;
+  }
+ /* Center the popup overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Style the popup content */
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    max-width: 90%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: popup-fade-in 0.3s ease;
+  }
+  
+  /* Title styling */
+  .popup-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+    text-align: center;
+  }
+  
+  /* Button styling */
+  .popup-buttons button {
+    margin: 5px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+   .popup-buttons.success {
+    background: #007bff;
+    color: white;
+  }
+  
+ .popup-buttons .danger{
+    background-color: #dc3545 !important;
+    color: white;
+  }
+  
+  @keyframes popup-fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .popup {
+    position: fixed;             /* stick to viewport */
+    top: 50%;                    /* move down to middle */
+    left: 50%;                   /* move right to middle */
+    transform: translate(-50%, -50%); /* center exactly */
+    z-index: 9999;               /* make sure it's above everything */
+  }
+  .popup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+    
+    
