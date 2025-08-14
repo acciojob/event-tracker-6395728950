@@ -34,7 +34,7 @@ export default function MyCalendar() {
         right: [
           {
             text: "Save",
-            class: "btn",
+            className: "btn",
             action: () => {
               const title = document.getElementById("newEventTitle").value;
               const location = document.getElementById("newEventLocation").value;
@@ -73,7 +73,7 @@ export default function MyCalendar() {
         left: [
           {
             text: "Delete",
-             class:'danger',
+             className:'btn',
             action: () => {
               dispatch(DeleteEvent({ type: "delete", event }));
               Popup.close();
@@ -83,7 +83,7 @@ export default function MyCalendar() {
         right: [
           {
             text: "Edit",
-            class: "success",
+            className: "success",
             action: () => {
               const newTitle = document.getElementById("editEventTitle").value;
               console.log("what is come in newTitle",newTitle)
